@@ -1,0 +1,9 @@
+pandas
+numpy
+plotly
+ipykernel
+nbformat
+django
+openai
+pypdf
+dash
