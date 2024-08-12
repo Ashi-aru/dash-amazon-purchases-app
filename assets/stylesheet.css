@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+}
+
+.box {
+    width: 20%; /* 各divの幅を指定 */
+    padding: 10px;
+    margin-right: 10px;
+    box-sizing: border-box; /* パディングを含むボックスの幅を設定 */
+    border: 1px solid #ccc;
+}
+.box:last-child{
+    margin-left: 0;
+}
+
