@@ -1,6 +1,7 @@
 # I added
 venv_amazon/
 data/
+src/search.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
