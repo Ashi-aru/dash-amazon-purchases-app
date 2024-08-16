@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    flex-wrap: wrap; /* アイテムを複数行に折り返す */
     justify-content: space-between; /* ボックスを左右に配置 */
 }
 
@@ -24,16 +25,26 @@
 /* sbox= small box */
 .sbox {
     width: 49%; /* 各divの幅を指定 */
-    margin-right: 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
     box-sizing: border-box; /* パディングを含むボックスの幅を設定 */
     border: 1px solid #ccc; /* 外枠の太さを設定 */
 }
 .sbox:last-child{
-    margin-right: 0;
+    margin-right: 5px;
 }
 
 /* マルチラベルのドロップボックス */
 .custom-dropdown .Select-control {
-    min-width: 140px; /* 初期の最小幅を設定 */
+    min-width: 500px; /* 初期の最小幅を設定 */
     max-width: 100%; /* 最大幅も設定可能 */
+}
+
+/* ssbox =  */
+.ssbox{
+    padding-top: 5px;
+}
+.ssbox:first-child{
+    padding-bottom: 5px;
+    padding-top: 0px;
 }
