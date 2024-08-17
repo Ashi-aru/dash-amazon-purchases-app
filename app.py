@@ -57,16 +57,22 @@ app.layout = html.Div([
 def show_config(graph_type):
     if(graph_type=='Scatter Plot'):
         children = [
-            axis_maker(axis_name='x'),
-            axis_maker(axis_name='y'),
+            purchases_axis_maker(axis_name='x'),
+            purchases_axis_maker(axis_name='y'),
         ]
     if(graph_type=='Parallel Cordinates Plot'):
         children = [
             dcc.Dropdown(
-                options=[i for i in range(1,7)],
-                placeholder='軸の数を選択',
-                id='config_axis_num',
+                options=[i for i in range(7)],
+                placeholder='purchase：軸の数を選択',
+                id='config_purchase_axis_num',
                 className='custom-dropdown',
+            ),
+            dcc.Dropdown(
+                options=[i for i in range(7)],
+                placeholder='survey：軸の数を選択',
+                id='config_survey_axis_num',
+                className='sbox custom-dropdown',
             ),
         ]
     return children
@@ -76,26 +82,37 @@ def show_config(graph_type):
 # 軸の数に応じて、軸設定用パーツの数を変化させる
 @callback(
     Output('plot_config', 'children', allow_duplicate=True),
-    Input('config_axis_num', 'value'),
+    Input('config_purchase_axis_num', 'value'),
+    Input('config_survey_axis_num', 'value'),
     prevent_initial_call=True
 )
-def update_config(n):
+def update_config(p_n, s_n):
     children = [
             dcc.Dropdown(
-                options=[i for i in range(1,7)],
-                placeholder='軸の数を選択',
-                value=n,
-                id='config_axis_num',
+                options=[i for i in range(7)],
+                placeholder='purchase：軸の数を選択',
+                value=p_n,
+                id='config_purchase_axis_num',
+                className='custom-dropdown',
+            ),
+            dcc.Dropdown(
+                options=[i for i in range(7)],
+                placeholder='survey：軸の数を選択',
+                value=s_n,
+                id='config_survey_axis_num',
                 className='sbox custom-dropdown',
             ),
         ]
-    return children+[axis_maker(str(i)) for i in range(1,n+1)]
+    return children+[purchases_axis_maker(str(i)) for i in range(1,p_n+1)]+[survey_axis_maker(str(j)) for j in range(1, s_n+1)]
+
+# グラフの生成
+
 
 
 # ----------------------------------------------------------------
 # その他の関数群（srcに移動させる可能性あり）
 
-def axis_maker(axis_name):
+def purchases_axis_maker(axis_name):
     output =  html.Div([
                 dcc.Dropdown(
                     options=[
@@ -103,8 +120,8 @@ def axis_maker(axis_name):
                         {'label': '購入量', 'value':'amount'},
                         {'label': '使用回数', 'value':'times'},
                     ],
-                    placeholder=f'{axis_name}軸の値を選択',
-                    id=f'{axis_name}_axis_selector',
+                    placeholder=f'p_{axis_name}軸の値を選択' if(axis_name != 'x' and axis_name != 'y') else f'{axis_name}軸の値を選択',
+                    id=f'p_{axis_name}_axis_selector' if(axis_name != 'x' and axis_name != 'y') else f'{axis_name}_axis_selector',
                     className='ssbox',
                 ),
                 dcc.RangeSlider(
@@ -141,6 +158,42 @@ def axis_maker(axis_name):
                 ),
             ], className='sbox')
     return output
+
+
+def survey_axis_maker(axis_name):
+    output =  html.Div([
+                dcc.Dropdown(
+                    options=[
+                        'Q-demos-age',
+                        'Q-demos-hispanic',
+                        'Q-demos-race',
+                        'Q-demos-education',
+                        'Q-demos-income',
+                        'Q-demos-gender',
+                        'Q-sexual-orientation',
+                        'Q-demos-state',
+                        'Q-amazon-use-howmany',
+                        'Q-amazon-use-hh-size',
+                        'Q-amazon-use-how-oft',
+                        'Q-substance-use-cigarettes',
+                        'Q-substance-use-marijuana',
+                        'Q-substance-use-alcohol',
+                        'Q-personal-diabetes',
+                        'Q-personal-wheelchair',
+                        'Q-life-changes',
+                        'Q-sell-YOUR-data',
+                        'Q-sell-consumer-data',
+                        'Q-small-biz-use',
+                        'Q-census-use',
+                        'Q-research-society'
+                    ],
+                    placeholder=f's_{axis_name}軸の値を選択',
+                    id=f'p_{axis_name}_axis_selector(survey)',
+                    className='ssbox',
+                ),
+            ], className='sbox')
+    return output
+
 
 
 if(__name__ == '__main__'):
