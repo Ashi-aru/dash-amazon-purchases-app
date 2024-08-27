@@ -1,17 +1,22 @@
 .container {
     display: flex;
-    flex-wrap: wrap; /* アイテムを複数行に折り返す */
+    flex-wrap: wrap; /*アイテムを複数行に折り返す */
     justify-content: space-between; /* ボックスを左右に配置 */
+}
+.container_left {
+    display: flex;
+    flex-wrap: wrap; /*アイテムを複数行に折り返す */
+    justify-content: flex-start; /* ボックスを左右に配置 */
 }
 
 /* bbox = big box */
 .bbox {
-    width: 49%; /* 各divの幅を指定 */
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 10px;
+    width: 55%; /* 各divの幅を指定 */
+    /* padding-left: 10px; */
+    /* padding-right: 10px; */
+    /* margin-right: 10px; */
     box-sizing: border-box; /* パディングを含むボックスの幅を設定 */
-    border: 0px solid #ccc; /* 外枠の太さを設定 */
+    border: 4px solid #bbb; /* 外枠の太さを設定 */
 }
 .bbox:last-child{
     margin-right: 0;
@@ -19,25 +24,26 @@
 
 /* mbox= midle box */
 .mbox {
-    padding-top: 10px;
+    /* padding-top: 10px; */
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 /* sbox= small box */
 .sbox {
     width: 49%; /* 各divの幅を指定 */
-    margin-right: 5px;
-    margin-bottom: 5px;
     box-sizing: border-box; /* パディングを含むボックスの幅を設定 */
     border: 1px solid #ccc; /* 外枠の太さを設定 */
+    margin-top: 5px;
 }
 .sbox:last-child{
-    margin-right: 5px;
+    margin-right: 0;
 }
 
 /* マルチラベルのドロップボックス */
 .custom-dropdown .Select-control {
-    min-width: 500px; /* 初期の最小幅を設定 */
-    max-width: 100%; /* 最大幅も設定可能 */
+    min-width: 300px; /* 初期の最小幅を設定 */
+    max-width: 50%; /* 最大幅も設定可能 */
 }
 
 /* ssbox =  */
